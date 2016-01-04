@@ -2,5 +2,8 @@
 function fbLogin(response) {
     console.log("Forward to authentication!");
 
-    window.location="/auth/fb";
+    var accessToken = response.authResponse.accessToken;
+    var userId = response.authResponse.userID;
+
+    window.location="/auth/fb?accessToken="+accessToken+"&userId="+userId;
 }
