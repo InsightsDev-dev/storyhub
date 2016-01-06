@@ -29,7 +29,7 @@ public class LoginController {
         loggingToUserInfo(accessToken, userId);
 
         //TODO 일단 session에 저장해 group list를 가지고 오는 기능을 구현 한 후에 userdetails로 변경
-        new UserSessionHandler(session).saveUserInfo(accessToken, userId);
+        new UserSession(session).createUserSession(accessToken, userId);
 
         return "redirect:/group/list";
     }

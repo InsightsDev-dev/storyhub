@@ -3,6 +3,7 @@ package io.storyhub.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -64,5 +65,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         if (!registry.hasMappingForPattern("/static/**")) {
             registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         }
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(new UserSessionHandlerMethodArgumentResolver());
     }
 }

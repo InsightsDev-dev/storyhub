@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author chanwook
  */
-public class UserSessionHandler {
+public class UserSession {
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     public static final String ACCESS_TOKEN = "_ACCESS_TOKEN";
@@ -18,11 +18,11 @@ public class UserSessionHandler {
 
     private final HttpSession httpSession;
 
-    public UserSessionHandler(HttpSession session) {
+    public UserSession(HttpSession session) {
         this.httpSession = session;
     }
 
-    public void saveUserInfo(String accessToken, String userId) {
+    public void createUserSession(String accessToken, String userId) {
         //TODO add verify logic
         //TODO optional
         httpSession.setAttribute(ACCESS_TOKEN, accessToken);
@@ -31,5 +31,10 @@ public class UserSessionHandler {
 
     public String getUserId() {
         return (String) httpSession.getAttribute(USER_ID);
+    }
+
+
+    public String getAccessToken() {
+        return (String) httpSession.getAttribute(ACCESS_TOKEN);
     }
 }

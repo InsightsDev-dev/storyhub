@@ -9,7 +9,11 @@
 {>"header"/}
 
 <div>
-    body!
+    {#groupList}
+    <p>
+        <a href="/group/{groupId}"><h3>{#name}</h3></a>
+    </p>
+    {/groupList}
 </div>
 
 {>"footer"/}
