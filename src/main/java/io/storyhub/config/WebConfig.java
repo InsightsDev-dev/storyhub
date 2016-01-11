@@ -1,5 +1,6 @@
 package io.storyhub.config;
 
+import io.chanwook.facebook.UserSessionHandlerMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
