@@ -1,8 +1,8 @@
 package io.storyhub;
 
-import io.storyhub.facebook.FacebookGraphAPI;
-import io.storyhub.facebook.model.Post;
-import io.storyhub.security.UserSession;
+import io.chanwook.facebook.FacebookGraphAPI;
+import io.chanwook.facebook.UserSession;
+import io.chanwook.facebook.model.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;

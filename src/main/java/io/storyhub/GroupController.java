@@ -1,9 +1,9 @@
 package io.storyhub;
 
-import io.storyhub.facebook.FacebookGraphAPI;
-import io.storyhub.facebook.model.Group;
-import io.storyhub.facebook.model.Post;
-import io.storyhub.security.UserSession;
+import io.chanwook.facebook.FacebookGraphAPI;
+import io.chanwook.facebook.UserSession;
+import io.chanwook.facebook.model.Group;
+import io.chanwook.facebook.model.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
