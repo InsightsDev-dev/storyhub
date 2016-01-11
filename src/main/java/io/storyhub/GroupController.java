@@ -1,5 +1,8 @@
-package io.storyhub.group;
+package io.storyhub;
 
+import io.storyhub.facebook.FacebookGraphAPI;
+import io.storyhub.facebook.model.Group;
+import io.storyhub.facebook.model.Post;
 import io.storyhub.security.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +25,7 @@ public class GroupController {
     public String list(ModelMap model, UserSession userSession) {
 
         FacebookGraphAPI facebookGraphAPI = new FacebookGraphAPI(userSession);
-        List<FacebookGroup> groupList = facebookGraphAPI.groupList();
+        List<Group> groupList = facebookGraphAPI.groupList();
 
         if (logger.isDebugEnabled()) {
             logger.debug("Group list for " + userSession.getUserId() + ", size is " + groupList.size());

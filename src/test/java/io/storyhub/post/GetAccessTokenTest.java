@@ -1,5 +1,6 @@
-package io.storyhub.group;
+package io.storyhub.post;
 
+import io.storyhub.facebook.FacebookOAuthAPI;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

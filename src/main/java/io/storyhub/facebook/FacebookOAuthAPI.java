@@ -1,4 +1,4 @@
-package io.storyhub.group;
+package io.storyhub.facebook;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;

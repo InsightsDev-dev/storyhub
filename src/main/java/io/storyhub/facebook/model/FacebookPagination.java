@@ -1,4 +1,4 @@
-package io.storyhub.group;
+package io.storyhub.facebook.model;
 
 import java.io.Serializable;
 import java.util.HashMap;

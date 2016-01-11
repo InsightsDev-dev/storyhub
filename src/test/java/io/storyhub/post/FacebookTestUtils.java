@@ -1,4 +1,4 @@
-package io.storyhub.group;
+package io.storyhub.post;
 
 import io.storyhub.security.UserSession;
 import org.springframework.mock.web.MockHttpSession;

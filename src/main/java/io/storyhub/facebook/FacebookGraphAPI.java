@@ -1,5 +1,6 @@
-package io.storyhub.group;
+package io.storyhub.facebook;
 
+import io.storyhub.facebook.model.*;
 import io.storyhub.security.UserSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -34,12 +35,12 @@ public class FacebookGraphAPI {
      *
      * @return
      */
-    public List<FacebookGroup> groupList() {
+    public List<Group> groupList() {
         Map<String, String> args = new HashMap<>();
         args.put("userId", userSession.getUserId());
         args.put("accessToken", userSession.getAccessToken());
 
-        FacebookGroupData data = restTemplate.getForObject(URL_GET_GROUP_LIST, FacebookGroupData.class, args);
+        GroupList data = restTemplate.getForObject(URL_GET_GROUP_LIST, GroupList.class, args);
         return data.getData();
     }
 
@@ -49,7 +50,7 @@ public class FacebookGraphAPI {
      * @param groupId
      * @return
      */
-    public FacebookGroup group(String groupId) {
+    public Group group(String groupId) {
 
         return null;
     }
@@ -80,6 +81,11 @@ public class FacebookGraphAPI {
         final HashMap<String, String> args = new HashMap<>();
         args.put("postId", postId);
         args.put("accessToken", userSession.getAccessToken());
+
+        // 페이지 액세스 토큰을 받아서 해보자!
+        PageAccessToken pat =
+                restTemplate.getForObject(FACEBOOK_API_URI + "/{postId}?fields=access_token&" + ACCESS_TOKEN_PARAM, PageAccessToken.class, args);
+        args.put("accessToken", pat.getAccessToken());
 
         final ResponseEntity<Post> response = restTemplate.getForEntity(URL_GET_POST, Post.class, args);
         return response.getBody();

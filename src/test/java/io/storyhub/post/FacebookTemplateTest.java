@@ -1,5 +1,8 @@
-package io.storyhub.group;
+package io.storyhub.post;
 
+import io.storyhub.facebook.FacebookGraphAPI;
+import io.storyhub.facebook.model.Group;
+import io.storyhub.facebook.model.Post;
 import io.storyhub.security.UserSession;
 import org.junit.Test;
 
@@ -20,12 +23,12 @@ public class FacebookTemplateTest {
     @Test
     public void groupList() throws Exception {
         final FacebookGraphAPI t = new FacebookGraphAPI(createUserSession());
-        final List<FacebookGroup> groupList = t.groupList();
+        final List<Group> groupList = t.groupList();
 
         assertThat(groupList).isNotNull();
 
         // assert for test group
-        final FacebookGroup testGroup = getTestGroup(groupList);
+        final Group testGroup = getTestGroup(groupList);
         assertThat(testGroup).isNotNull();
         assertThat(testGroup.getName()).isEqualTo("ISUG");
 
@@ -47,8 +50,8 @@ public class FacebookTemplateTest {
 
     }
 
-    private FacebookGroup getTestGroup(List<FacebookGroup> groupList) {
-        for (FacebookGroup each : groupList) {
+    private Group getTestGroup(List<Group> groupList) {
+        for (Group each : groupList) {
             System.out.println(each.getId());
             if (TEST_GROUP_ID.equals(each.getId())) return each;
         }

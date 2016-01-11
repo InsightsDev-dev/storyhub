@@ -1,5 +1,7 @@
-package io.storyhub.group;
+package io.storyhub;
 
+import io.storyhub.facebook.FacebookGraphAPI;
+import io.storyhub.facebook.model.Post;
 import io.storyhub.security.UserSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
