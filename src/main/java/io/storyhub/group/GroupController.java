@@ -21,14 +21,14 @@ public class GroupController {
     @RequestMapping("/group/list")
     public String list(ModelMap model, UserSession userSession) {
 
+        FacebookGraphAPI facebookGraphAPI = new FacebookGraphAPI(userSession);
+        List<FacebookGroup> groupList = facebookGraphAPI.groupList();
+
         if (logger.isDebugEnabled()) {
-            logger.debug("Group list for " + userSession.getUserId());
+            logger.debug("Group list for " + userSession.getUserId() + ", size is " + groupList.size());
         }
 
-        FacebookTemplate facebookTemplate = new FacebookTemplate(userSession);
-        List<FacebookGroup> groupList = facebookTemplate.groupList();
-
-        model.addAttribute(groupList);
+        model.put("groupList", groupList);
 
         return "groupList";
     }
@@ -37,11 +37,16 @@ public class GroupController {
     public String postListInGroup(@PathVariable String groupId,
                                   UserSession userSession, ModelMap model) {
 
-        final FacebookTemplate facebookTemplate = new FacebookTemplate(userSession);
+        final FacebookGraphAPI facebookGraphAPI = new FacebookGraphAPI(userSession);
         // 현재 화면에서는 group 정보는 필요없고 바로 feed만 가져와도 된다.
 //        FacebookGroup group = facebookTemplate.group(groupId);
-        List<Post> postList = facebookTemplate.feedOfGroup(groupId);
+        List<Post> feed = facebookGraphAPI.feedOfGroup(groupId);
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("Group feed for " + groupId + ", feed size is " + feed.size());
+        }
+
+        model.put("feed", feed);
         return "postList";
     }
 

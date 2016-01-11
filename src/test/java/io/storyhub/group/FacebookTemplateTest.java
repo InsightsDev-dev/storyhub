@@ -2,7 +2,6 @@ package io.storyhub.group;
 
 import io.storyhub.security.UserSession;
 import org.junit.Test;
-import org.springframework.mock.web.MockHttpSession;
 
 import java.util.List;
 
@@ -13,13 +12,14 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
  */
 public class FacebookTemplateTest {
 
-    public static final String ACCESS_TOKEN = "CAAPQYJVvcDkBAOEashYMpXmv2sMRpWzZBGYnTeoZAql0GW9qBzttb0n47xldD8vfyNAo1QumWAN7Q3j5SInZCvKqxxHSglz1BOm4YOZAFqhilR6cXbXOYvplvmfJB0NSZCE00yD1jDeBrRJRYmBK8dwWbAZBzqNCRtlMMwo2uUebZCaxELlCt593Ofnx4LDCepzqolxGISSVDl9Hz6r90rp";
-    public static final String USER_ID = "1019704548086386";
+    public static final String ACCESS_TOKEN = "CAAPQYJVvcDkBAPa0XMFsNZBlQvg9EjqZAtEVe2P4c6ELh91b6b8GRW0B3oDG4gYzWG7XWggWRwllZBvZCllc3jtu4zlZB4iWsP4gwvkD8oUdqxs1r5ENVTLLwViJIr79ZCWZBNZC0hCLXbOUnjuu09FSud1VWnOoJAnltO0ZCgPj53bZC8yeBmrZAx8AnEu72zPYYWiAvwRTzdAbQZDZD";
+    public static final String USER_ID = "122583464785986";
+
     private final String TEST_GROUP_ID = "206475916202991";
 
     @Test
     public void groupList() throws Exception {
-        final FacebookTemplate t = new FacebookTemplate(createUserSession());
+        final FacebookGraphAPI t = new FacebookGraphAPI(createUserSession());
         final List<FacebookGroup> groupList = t.groupList();
 
         assertThat(groupList).isNotNull();
@@ -32,21 +32,19 @@ public class FacebookTemplateTest {
         //TODO assertion
     }
 
+    private UserSession createUserSession() {
+        return FacebookTestUtils.createUserSession(ACCESS_TOKEN, USER_ID);
+    }
+
     @Test
     public void feedOfGroup() throws Exception {
 
-        final FacebookTemplate t = new FacebookTemplate(createUserSession());
+        final FacebookGraphAPI t = new FacebookGraphAPI(createUserSession());
         final List<Post> postList = t.feedOfGroup(TEST_GROUP_ID);
 
         assertThat(postList).isNotNull();
         System.out.println(postList.size());
 
-    }
-
-    private UserSession createUserSession() {
-        final UserSession userSession = new UserSession(new MockHttpSession());
-        userSession.createUserSession(ACCESS_TOKEN, USER_ID);
-        return userSession;
     }
 
     private FacebookGroup getTestGroup(List<FacebookGroup> groupList) {

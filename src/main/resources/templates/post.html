@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group List</title>
+</head>
+<body>
+
+{>"header"/}
+
+<div>
+    {#post}
+    <div id="profile"></div>
+    <div id="post">
+        <p>{message}</p>
+        <a href="/post/{id}">post-link</a>
+    </div>
+    <div id="reply"></div>
+    {/post}
+</div>
+
+{>"footer"/}
+
+</body>
+</html>
